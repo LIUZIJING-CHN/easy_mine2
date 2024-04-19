@@ -1,0 +1,15 @@
+from turtle import forward
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class Word_Embedding(nn.Module):
+    def __init__(self) -> None:
+        super(Word_Embedding, self).__init__()
+        self.back_embedding1 = nn.Linear(300, 640)
+        self.back_embedding2 = nn.Linear(640, 640)
+    
+    def forward(self, x):
+        x = F.leaky_relu(self.back_embedding1(x))
+        x = F.leaky_relu(self.back_embedding2(x))
+        return x
